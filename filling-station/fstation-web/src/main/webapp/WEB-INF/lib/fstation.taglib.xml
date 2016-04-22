@@ -1,0 +1,20 @@
+<facelet-taglib>
+	<namespace>http://fstation.com/jsf/fstation</namespace>
+	
+	<tag>
+		<tag-name>pageTitle</tag-name>
+		<source>../tags/pageTitle.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>header</tag-name>
+		<source>../tags/header.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>menu</tag-name>
+		<source>../tags/menu.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>footer</tag-name>
+		<source>../tags/footer.xhtml</source>
+	</tag>
+</facelet-taglib>

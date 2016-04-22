@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <link rel="shortcut icon" href="./images/tpa.ico" />
+
+    <link href="wro/login.css?brandingID=Login" rel="stylesheet" />
+    <script src="wro/login.js"></script>
+
+    <script language="JavaScript">
+        $(function() {
+            $('body').removeClass('loading')
+            
+            $('#loginForm\\:userID').keydown(function(event) {
+                if (event.keyCode == 13) {
+                    login($.browser.msie, $.browser.version);
+                }
+            });
+
+            $('#loginForm\\:password').keydown(function(event) {
+                if (event.keyCode == 13) {
+                    login($.browser.msie, $.browser.version);
+                }
+            });
+        });
+        
+        window.onbeforeunload = function() {
+            createCookie("CLIENT_CURRENT_TIME", new Date().getTime(), new Date(
+                    new Date().getTime() + 1000 * 60));
+            createCookie("PAGE_NAVIGATION_DELAY", new Date().getTime(), new Date(
+                    new Date().getTime() + 1000 * 60));
+        }
+
+        function createCookie(name, value, expires) {
+
+            var cookie = name + "=" + escape(value) + ";";
+            if (expires) {
+                if (expires instanceof Date) {
+                    if (isNaN(expires.getTime()))
+                        expires = new Date();
+                } else
+                    expires = new Date(new Date().getTime() + parseInt(expires)
+                            * 1000 * 60 * 60 * 24);
+                cookie += "expires=" + expires.toGMTString() + ";";
+            }
+            document.cookie = cookie;
+        }            
+        
+        function login(ie, version) {
+            if (ie != 'undefined') {
+                if (ie) {
+                    if (version == 8.0) {
+                        $('#loginForm\\:loginButton').click();
+                    }
+                }
+            }
+        }
+    </script>
+</ui:composition>

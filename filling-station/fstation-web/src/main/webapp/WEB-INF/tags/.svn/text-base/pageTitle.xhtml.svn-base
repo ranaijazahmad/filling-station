@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".titleTooltip").tooltip({
+				'selector' : '',
+				'placement' : 'left'
+			});
+		});
+	</script>
+
+	<div id="pageTitleContainer">
+		<div class="span20 sectionCenter">
+			<div class="row">
+				<div class="span10">
+					<h1>
+						<h:outputText value="#{pageTitle}" />
+					</h1>
+				</div>
+
+				<div class="span10">
+					<div class="titleHelp pull-right">
+						<a href="#" class="titleTooltip" rel="tooltip" data-placement="bottom"
+							data-original-title="#{pageDescription}">Learn More</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>

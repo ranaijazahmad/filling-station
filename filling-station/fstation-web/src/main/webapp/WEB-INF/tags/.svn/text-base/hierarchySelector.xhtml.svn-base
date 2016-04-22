@@ -1,0 +1,123 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<div class="row rowSpace">
+		<div class="span9">
+			<h:outputLabel for="clientSelector"
+				value="#{msgHierarchySelector['hdrClient']}" />
+
+			<p:selectOneMenu id="clientSelector" effect="fade"
+				disabled="#{hierarchySelectionBean.clientMenuDisabled}"
+				style="width:300px"
+				value="#{hierarchySelectionBean.selectedClientId}">
+
+				<f:selectItem
+					itemLabel="#{hierarchySelectionBean.clientMenuDisabled ? hierarchySelectionBean.clientMap[selectedClientId].name : msgHierarchySelector['txtSelectOne']}"
+					noSelectOption="true" />
+
+				<f:selectItems var="client"
+					value="#{airedale:mapToList(hierarchySelectionBean.clientMap)}"
+					itemValue="#{client.value.id}" itemLabel="#{client.value.name}" />
+
+				<p:ajax event="change"
+					listener="#{hierarchySelectionBean.clientChangeListener}"
+					update="@form" />
+			</p:selectOneMenu>
+		</div>
+
+		<div class="span9 offset1">
+			<h:outputLabel for="employerSelector"
+				value="#{msgHierarchySelector['hdrEmployer']}" />
+
+			<p:selectOneMenu id="employerSelector" effect="fade"
+				disabled="#{hierarchySelectionBean.employerMenuDisabled}"
+				style="width:300px"
+				value="#{hierarchySelectionBean.selectedEmployerId}">
+
+				<f:selectItem
+					itemLabel="#{hierarchySelectionBean.employerMenuDisabled ? hierarchySelectionBean.employerMap[selectedEmployerId].name : msgHierarchySelector['txtSelectOne']}"
+					noSelectOption="true" />
+
+				<f:selectItems var="employer"
+					value="#{airedale:mapToList(hierarchySelectionBean.employerMap)}"
+					itemValue="#{employer.value.id}" itemLabel="#{employer.value.name}" />
+
+				<p:ajax event="change"
+					listener="#{hierarchySelectionBean.employerChangeListener}"
+					update="@form" />
+			</p:selectOneMenu>
+		</div>
+	</div>
+
+	<div class="row rowSpace">
+		<div class="span9">
+			<h:outputLabel for="locationSelector"
+				value="#{msgHierarchySelector['hdrLocation']}" />
+
+			<p:selectOneMenu id="locationSelector" effect="fade"
+				disabled="#{hierarchySelectionBean.locationMenuDisabled}"
+				style="width:300px"
+				value="#{hierarchySelectionBean.selectedLocationId}">
+
+				<f:selectItem
+					itemLabel="#{hierarchySelectionBean.locationMenuDisabled ? hierarchySelectionBean.locationMap[selectedLocationId].name : msgHierarchySelector['txtSelectOne']}"
+					noSelectOption="true" />
+
+				<f:selectItems var="location"
+					value="#{airedale:mapToList(hierarchySelectionBean.locationMap)}"
+					itemValue="#{location.value.id}" itemLabel="#{location.value.name}" />
+
+				<p:ajax event="change"
+					listener="#{hierarchySelectionBean.locationChangeListener}"
+					update="@form" />
+			</p:selectOneMenu>
+		</div>
+
+		<div class="span9 offset1">
+			<h:outputLabel for="planSelector"
+				value="#{msgHierarchySelector['hdrPlan']}" />
+
+			<p:selectOneMenu id="planSelector" effect="fade"
+				rendered="#{not multiplePlanSelection}"
+				disabled="#{hierarchySelectionBean.planMenuDisabled}"
+				style="width:300px" value="#{hierarchySelectionBean.selectedPlanId}">
+
+				<f:selectItem
+					itemLabel="#{hierarchySelectionBean.planMenuDisabled ? hierarchySelectionBean.planMap[selectedPlanId].name : msgHierarchySelector['txtSelectOne']}"
+					noSelectOption="true" />
+
+				<f:selectItems var="plan"
+					value="#{airedale:mapToList(hierarchySelectionBean.planMap)}"
+					itemValue="#{plan.value.id}" itemLabel="#{plan.value.name}" />
+
+				<p:ajax event="change"
+					listener="#{hierarchySelectionBean.planChangeListener}"
+					update="@form" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="multiplePlanSelector" effect="fade"
+				rendered="#{multiplePlanSelection}"
+				disabled="#{hierarchySelectionBean.planMenuDisabled}"
+				style="width:300px" value="#{hierarchySelectionBean.selectedPlanId}">
+
+				<f:selectItem
+					itemLabel="#{hierarchySelectionBean.planMenuDisabled ? (selectedPlanId eq msgHierarchySelector['txtAll'] ? msgHierarchySelector['txtAll'] : hierarchySelectionBean.planMap[selectedPlanId].name) : msgHierarchySelector['txtSelectOne']}"
+					noSelectOption="true" />
+
+				<f:selectItem itemLabel="#{msgHierarchySelector['txtAll']}"
+					itemValue="#{msgHierarchySelector['txtAll']}" />
+
+				<f:selectItems var="plan"
+					value="#{airedale:mapToList(hierarchySelectionBean.planMap)}"
+					itemValue="#{plan.value.id}" itemLabel="#{plan.value.name}" />
+
+				<p:ajax event="change"
+					listener="#{hierarchySelectionBean.planChangeListener}"
+					update="@form" />
+			</p:selectOneMenu>
+		</div>
+	</div>
+</ui:composition>

@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:airedale="http://envisage.com/jsf/airedale">
+	
+	<div id="footerContainer">
+		<div id="footerCopyrightContainer">
+			<span class="coyrightText"><h:outputText
+					value="#{sessionScope['DISCLAIMER_TEXT']}" /></span>
+
+			<ul>
+				<li><h:outputText value="#{msgFooter['copyright']}" /></li>
+			</ul>
+		</div>
+
+		<div id="footerLinkContainer">
+			<!-- <ul>
+				<li><a href="#"><h:outputText value="#{msgFooter['lnkAbout']}" /></a></li>
+				<li><a href="#"><h:outputText value="#{msgFooter['lnkContact']}" /></a></li>
+				<li><a href="#"><h:outputText value="#{msgFooter['lnkPrivacy']}" /></a></li>
+				<li><a href="#"><h:outputText value="#{msgFooter['lnkHelp']}" /></a></li>
+			</ul>
+			 -->
+		</div>
+	</div>
+	<airedale:sessionExpire />
+</ui:composition>

@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:airedale="http://envisage.com/jsf/airedale">
+
+	<div id="headerContainer">
+		<h:form>
+			<div id="headerTopContainer">
+				<div class="container">
+					<div class="row">
+						<div class="span12">
+							<a href="home.xhtml"> <p:graphicImage
+									value="#{headerBean.mainLogo}" styleClass="logo" />
+							</a>
+						</div>
+
+						<div id="userContainer" class="span12">
+							<div class="pull-right">
+								<a href="logout.xhtml" class="logout"><h:outputText
+										value="#{msgMenu['menuLogout']}" /> </a>
+
+							</div>
+
+							<div class="pull-right">
+								<p:commandLink id="viewContextLink"
+									action="#{viewChangeController.populateAvailableViews}"
+									oncomplete="viewChanger.show()" update="@form">
+									<h:outputText id="viewContextString"
+										value="#{msgMenu['viewingAs']} #{userSessionBean.currentView.viewType} #{userSessionBean.currentView.viewName}" />
+								</p:commandLink>
+							</div>
+
+							<div class="userName pull-right">
+								<h:outputText id="userName"
+									value="#{userSessionBean.userDisplayName}" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<p:dialog id="viewChangerDialog"
+				message="#{msgMenu['txtChangeView']}"
+				header="#{msgMenu['viewChangerHeader']}" severity="alert"
+				widgetVar="viewChanger" modal="true">
+
+				<p:dataTable id="viewDataTable" var="pageView"
+					value="#{viewChangeController.availableViews}" paginator="true"
+					rows="10"
+					paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
+					rowsPerPageTemplate="15" paginatorPosition="bottom"
+					styleClass="table table-hover">
+
+					<p:column filterBy="#{pageView.viewName}"
+						sortBy="#{pageView.viewName}">
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{pageView.viewName}" />
+					</p:column>
+
+					<p:column filterBy="#{pageView.viewType}"
+						sortBy="#{pageView.viewType}">
+						<f:facet name="header">
+							<h:outputText value="Type" />
+						</f:facet>
+						<h:outputText value="#{pageView.viewType}" />
+					</p:column>
+
+					<p:column>
+						<p:commandLink title="Select" styleClass="envicon-med-edit"
+							ajax="false" action="#{viewChangeController.selectNewView}">
+							<f:setPropertyActionListener
+								target="#{userSessionBean.currentView}" value="#{pageView}" />
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+
+				<p:ajax event="close"
+					listener="#{viewChangeController.handleViewDialogClose}" />
+			</p:dialog>
+
+			<p:growl id="headerMessages" showDetail="true" life="5000"
+				severity="info,error" />
+		</h:form>
+
+		<airedale:menu />
+	</div>
+</ui:composition>

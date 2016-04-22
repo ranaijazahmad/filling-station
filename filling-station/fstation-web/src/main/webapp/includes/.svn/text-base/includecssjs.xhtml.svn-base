@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <link rel="shortcut icon" href="./images/tpa.ico" />
+
+    <link
+        href="wro/application.css?brandingID=#{sessionScope['BRANDING_ID']}"
+        rel="stylesheet" />
+    <script src="wro/application.js"></script>
+
+    <script language="JavaScript" type="text/javascript">
+        $(function() {
+            $('body').removeClass('loading')
+        });
+
+        window.onbeforeunload = function() {
+            createCookie("PAGE_NAVIGATION_DELAY", new Date().getTime(), new Date(
+                    new Date().getTime() + 1000 * 60 * 60));
+        }
+
+        function createCookie(name, value, expires) {
+
+            var cookie = name + "=" + escape(value) + ";";
+            if (expires) {
+                if (expires instanceof Date) {
+                    if (isNaN(expires.getTime()))
+                        expires = new Date();
+                } else
+                    expires = new Date(new Date().getTime() + parseInt(expires)
+                            * 1000 * 60 * 60 * 24);
+                cookie += "expires=" + expires.toGMTString() + ";";
+            }
+            document.cookie = cookie;
+        }
+    </script>
+
+</ui:composition>

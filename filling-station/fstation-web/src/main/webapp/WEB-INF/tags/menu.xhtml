@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form id="menuForm">
+		<p:menubar id="menuBar">
+			<p:submenu label="Client" icon="ui-icon-document">
+				<p:menuitem value="Client Registeration"
+					url="clientregistration.xhtml" />
+				<p:menuitem value="Client Account" url="templates.xhtml" />
+				<p:separator />
+				<p:menuitem value="Quit" url="#" />
+			</p:submenu>
+
+			<p:submenu label="Supplier" icon="ui-icon-document">
+				<p:menuitem value="Supplier Registeration"
+					url="supplierregistration.xhtml" />
+				<p:menuitem value="Supplier Account" url="#" />
+			</p:submenu>
+
+			<p:submenu label="Stock" icon="ui-icon-document">
+				<p:menuitem value="Stock Entry" url="http://www.primefaces.org" />
+				<p:menuitem value="Stock Report" url="#" />
+			</p:submenu>
+
+			<p:menuitem value="Help" url="http://www.primefaces.org"
+				icon="ui-icon-help" />
+
+			<f:facet name="options">
+				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+			</f:facet>
+		</p:menubar>
+
+	</h:form>
+</ui:composition>

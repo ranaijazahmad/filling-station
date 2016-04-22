@@ -1,0 +1,141 @@
+/*
+	This Style Sheet is intended to be used on all pages.
+*/
+
+/* Please import this style sheet in your style sheet using following syntax. */
+/* @import url('/css/stylesheet.css'); */
+
+             body {margin:0; font-family:Arial; font-size:11px; background-color:#fff;}             
+			 form {margin-left:0; margin-top:0; margin-right:0; margin-bottom:0;}
+
+			      /* tables still need cellspacing="0" in the mark-up */ 
+			table {border-collapse:collapse; border-spacing:0;}
+               td {font-family:Arial; font-size:11px; color:#000000;}
+               th {font-family:Arial; font-size:11px; color:#000000; font-weight:bold;}               
+            input {font-family:Arial; font-size:11px; color:#000000;}
+           select {font-family:Arial; font-size:11px; color:#000000;}
+         textarea {font-family:Arial; font-size:11px; color:#000000;}
+              div {font-family:Arial; font-size:11px;}  /* color:#000000 was conflicting with rich:dataTable, so removed  */
+              img {border:0px;}
+				  /* remember to define focus styles! */ 
+		   :focus {outline: 0;}
+		 .opacity {
+					opacity: 0.5;
+					filter: alpha(opacity=50); /*proprietary IE code*/
+					background-color: #000;				
+				  }
+		   
+      .print_body {background-color:#FFFFFF;}
+
+	.link_SB_normal{cursor:hand; font-family:Verdana, font-size:12px; color:#003399; text-align:center;  text-decoration:none;}
+	.link_SB_bold {cursor: hand; font-family:Verdana; font-weight:bold; font-size:12px; color:#003399; text-align:center; text-decoration:none;}
+            .link {cursor:hand; font-family:Verdana; font-size:11px; color:#E7651A; padding:0; border:0; text-transform:uppercase; text-decoration:none; font-weight:bold;}
+         .linkRed {cursor:hand; font-family:Verdana; font-weight:bold; color:#ff0000; padding:0; border:0; text-decoration:none;}
+       .greenLink {cursor:hand; font-family:Verdana; font-size:11px; color:#339933; padding:0; border:0; text-transform:uppercase; text-decoration:none; font-weight:bold;}
+     .disableLink {cursor:default; font-family:Verdana; font-size:11px; color:#999999; padding:0; border:0; text-transform:uppercase; text-decoration:none; font-weight:bold;}
+
+                  /* to be used on ALL text disabled links*/
+         .disbale {font-family:Verdana; font-size:11px; color:#999999; padding:0; border:0; text-transform:uppercase; text-decoration:none; font-weight:bold;}
+
+	.pg_title {
+		font-family:Arial; color:#000000; text-align:center; font-weight:bold; font-size:14px;
+		text-transform:uppercase; width:100%; vertical-align:middle;
+	}
+      .subHeading {font-family:Arial; font-size:13px; color:#000000; font-weight:bold; text-align:center;}
+  .mandatoryLabel {font-family:Arial; font-size:11px; font-weight:bold; color:#006ca8; /* #0366a7  #0963a2 #0066ae */ }
+       .dateField {font-family:Arial; font-size:11px; color:#000000; width:61px; text-align:left;}
+		 .clsSpin {width:24px; font-family:Arial; font-size:11px; text-align:center;}       
+     
+      .clsCellTxt {font-family:Arial; font-size:11px; height:10px; }			
+		  .center {vertical-align:middle; text-align:center;  font-size:11px; height:10px; }     
+     .standardBtn {font-family:Arial; font-size:11px; text-align:center; width:80px}
+.standardBtnSmall {font-family:Arial; font-size:11px; text-align:center; width:50px}
+        .otherBtn {font-family:Arial; font-size:11px; text-align:center;}
+        
+        table.dataTbl {border: 1px solid #000; background-color:#DDEBF8 }
+
+	.real_borderless_text_field {
+		border-width: 0 0 0 0;
+		border-bottom-color: #7F9DB9;
+		border-left-color: #7F9DB9;
+		border-top-color: #7F9DB9;
+		border-right-color: #7F9DB9;
+		border-style: solid;
+		background-color: #F7FAFD;
+		font-family:Arial;
+		font-size:12px;
+		color:#000000;
+	}
+
+    .messageNotFount{font-family:Arial; font-weight:bold; color:#d03a09; align:center; font-size:16px;}
+    .intimation{font-family:Arial; font-weight:bold; color:#d03a09; align:center; font-size:14px;}
+	.filter {
+		font-family:Verdana, Arial, Helvetica, sans-serif;
+		text-align:center;
+		font-size:12px;
+		text-transform: capitalize;
+	 }
+	.light_background {background-color: #EEF7FF;}
+	.gridBackgroundColor{background-color:#D7E7E8;}
+	     	
+	/*Rich faces classes overridden*/
+	.rich-calendar-button{}
+	.rich-calendar-input{}
+	.rich-table {background-color: #beddf1;}
+	.rich-table-subheader {
+		background-color: #63A6DE line-height:20px;
+		font-family:Arial;
+		font-size: 10px;
+		font-weight: bold;
+		text-align: center;
+		color: #FFFFFF;
+		text-transform: uppercase;
+		height: 12px;
+	}	
+	
+	.rich-datascr {font-family:Arial; font-size:12px; font-weight:bold; text-align:center; color:#000000;}
+	.rich-dtascroller-table {font-family:Arial; font-size:12px; font-weight:bold; text-align:center; padding-left:10px; padding-right:10px;  background-color:#b2d1f0;}
+
+	.rich-datascr-button-dsbld {font-family:Arial; font-size:14px; font-weight:bold; text-align:center; color:#777777;}
+  .rich-datascr-button {background-color: #B2D1F0;font-family:Arial; font-size:14px; font-weight:bold; text-align:center; }
+	.rich-datascr-counter {font-family:Arial; font-size:12px; text-align:center;}
+	.rich-datascr-inact {font-family:Arial; font-size:12px; font-weight:bold; text-align:center; color:#ffffff;}
+	 
+	.rich-tab-inactive { cursor:pointer; font-family:Arial; font-size:11px; text-align:center; color:#333333;}	
+	.rich-tab-active { cursor:default; font-family:Arial; font-size:11px; text-align:center; color:#333333;}
+				 
+	.rich-table-subheadercell{background-color:#63A6DE; line-height:12px; font-family:Arial; font-size:10px; font-weight:bold; text-align:center; color:#FFFFFF; text-transform:uppercase;}
+	.row1 {cursor:pointer; background-color:#dfeef8; font-family:Arial; font-size:11px; color:#000000;}
+	.row1-no-hand {background-color:#dfeef8; font-family:Arial; font-size:11px; color:#000000;}
+	<!-- Azure:#F0FFFF; BlanchedAlmond:#FFEBCD; FloralWhite:#FFFAF0; Ivory:#FFFFF0; LightBlue:#ADD8E6; 
+	     LightGoldenRodYellow:#FAFAD2; MintCream:#F5FFFA; OldLace:#FDF5E6; SeaShell:#FFF5EE;        -->
+	<!-- PREFERRED Colors-: CornSilk:#FFF8DC; Gainsboro:#DCDCDC; Lavendar:#E6E6FA; LemonChiffon:#FFFACD; WhiteSmoke:#F5F5F5;   -->
+ 	.row2 {cursor:pointer; background-color:#beddf1; font-family:Arial; font-size:11px; color:#000000;}
+ 	.row2-no-hand {background-color:#beddf1; font-family:Arial; font-size:11px; color:#000000;}
+	.row3 {background-color: #FF0000;}
+ 	.rich-table-cell {color:#000000; font-family:Arial; font-size:12px }
+
+            .myClass {background-color:#C6E2FF;}
+ 	.search_criteria {font-family:Verdana; font-size:11px; color:#000000; padding:0;border:0; background-color:#DDEBF8;}
+
+	.table_header td {background-image:url(../images/title_background.gif); line-height:20px; font-family:Verdana; font-size:10px; font-weight:bold; text-align:center; color:#FFFFFF; text-transform:uppercase; height:20px}
+       .table_header {background-image:url(../images/title_background.gif); line-height:12px; font-family:Verdana; font-size:10px; font-weight:bold; text-align:center; color:#FFFFFF; text-transform:uppercase;}
+	    .tblTdCenter {font-family:Arial; font-size:12px; color:#000; vertical-align:middle; text-align:center; padding:0;}
+         .tblTdRight {font-family:Arial; font-size:12px; color:#000; vertical-align:middle; text-align:right; padding:0;}	    
+	       .tableRow {background-color:#003399; color:#000; font-family:Arial; font-size: 11px; height:20px;}
+        .selectedRow {background-color:#b1bd1f; color:#ffffff; font-family:Arial; font-size: 11px; height:20px;}
+.secret-question-field { border:1px solid #323232; background-color:#000000; font-size:13px; color:#74ad99; padding:3px; width:250px;}
+ 
+/** Inside Pages **/
+#inside-pages {position:relative; width:100%;	height:100%; z-index:102; background:repeat url(../images/content-area-bg.jpg);}
+
+.message-text-16 {font-size: 16px; font-family:Arial;color: #d03a09;}
+.td-heading {font-size:11px; color:#ffffff; text-transform:uppercase; font-weight:bold;}
+.patient-name {font-size:11px; color:#ffffff; text-transform:uppercase;}
+.text-field {border:1px solid #0068a6; background-color:#FFFFFF; font-family:Arial; font-size:11px;}
+
+.pag-link-black{ font-size:11px; text-decoration:none; color:#000000;}
+.pag-link-black:hover{ font-size:11px; text-decoration:underline; color:#000000;}
+
+.pag-link-gray:hover{ font-size:11px; text-decoration:underline; color:#646464;}
+/***********************************************************************************/

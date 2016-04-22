@@ -1,0 +1,134 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<p:tab title="#{contact.name}">
+		<div class="row">
+			<div class="span8">
+				<h:outputLabel for="contactName"
+					value="#{msgContactSetup['contactName']}" />
+				<h:inputText id="contactName"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="true" value="#{contact.name}" class="span8"
+					validator="#{regexBean.validateName}"
+					requiredMessage="#{msgContactSetup['requiredName']}"
+					validatorMessage="#{msgContactSetup['validationName']}" />
+				<p:watermark for="contactName" value="#{msgContactSetup['newContactName']}" />
+			</div>
+			<div class="span8">
+				<h:outputLabel for="contactEmail"
+					value="#{msgContactSetup['contactEmail']}" />
+
+				<h:inputText id="contactEmail"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="true" value="#{contact.email}" class="span8"
+					validator="#{regexBean.validateEmail}"
+					requiredMessage="#{msgContactSetup['requiredEmail']}"
+					validatorMessage="#{msgContactSetup['validationEmail']}" onblur="$(this).val($.trim($(this).val()));"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<h:outputLabel for="contactAddress"
+					value="#{msgContactSetup['contactAddress']}" />
+				<h:inputText id="contactAddress"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="false" value="#{contact.streetAddress1}" class="span8"
+					validator="#{regexBean.validateAddress}"
+					validatorMessage="#{msgContactSetup['validationAddressOne']}" />
+			</div>
+			
+			<div class="span8">
+				<h:outputLabel for="contactSecondaryAddress"
+					value="#{msgContactSetup['contactAddress2']}" />
+
+				<h:inputText id="contactSecondaryAddress"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="false" value="#{contact.streetAddress2}" class="span8"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<h:outputLabel for="contactCity"
+					value="#{msgContactSetup['contactCity']}" />
+				<h:inputText id="contactCity"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="false" value="#{contact.city}" class="span8"
+					validator="#{regexBean.validateName}"
+					validatorMessage="#{msgContactSetup['validationCity']}" />
+			</div>
+			
+			<div class="span4">
+				<h:outputLabel for="contactState"
+					value="#{msgContactSetup['contactState']}" />
+
+				<p:selectOneMenu value="#{contact.state}" id="contactState"
+					effect="fade" panelStyle="width:150px" style="width:150px">
+
+					<f:selectItem itemLabel="Select One" noSelectOption="true" />
+
+					<f:selectItems var="state" value="#{stateBean.states}"
+						itemValue="#{state.stateId}" itemLabel="#{state.stateName}" />
+				</p:selectOneMenu>
+			</div>
+
+			<div class="span4 offset1">
+				<h:outputLabel for="contactZip"
+					value="#{msgContactSetup['contactZip']}" />
+
+				<h:inputText id="contactZip"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="false" value="#{contact.zip}" class="span3"
+					validator="#{regexBean.validatePostalCode}"
+					validatorMessage="#{msgContactSetup['validationZip']}" />
+			</div>
+		</div>
+		<div class="row">
+		
+			<div class="span8">
+				<h:outputLabel for="contactPhone"
+					value="#{msgContactSetup['contactPhone']}" />
+
+				<p:inputMask id="contactPhone"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="false" value="#{contact.phone}" styleClass="span8"
+					validator="#{regexBean.validatePhoneNumber}"
+					mask="#{regexBean.phoneNumberMask}"
+					validatorMessage="#{msgContactSetup['validationPhone']}" />
+			</div>
+			<div class="span8">
+				<h:outputLabel for="contactFax"
+					value="#{msgContactSetup['contactFax']}" />
+
+				<p:inputMask id="contactFax"
+					style="#{not component.valid ? 'background-color:red' : ''}"
+					required="false" value="#{contact.fax}" styleClass="span8"
+					validator="#{regexBean.validatePhoneNumber}"
+					mask="#{regexBean.phoneNumberMask}"
+					validatorMessage="#{msgContactSetup['validationFax']}" />
+			</div>
+		</div>
+
+		<div class="btn-toolbar">
+			<p:commandButton value="#{msgContactSetup['btnSaveContact']}"
+				title="#{msgContactSetup['btnSaveContact']}"
+				icon="envicon-med-save envicon-white" update="@form"
+				action="#{contactBean.updateContact}"
+				styleClass="btn btn-success btn-small">
+				<f:setPropertyActionListener target="#{contactBean.selectedContact}"
+					value="#{contact}" />
+			</p:commandButton>
+			<p:commandButton value="#{msgContactSetup['btnDeleteContact']}"
+				title="#{msgContactSetup['btnDeleteContact']}"
+				icon="envicon-med-trash envicon-white" update="@form"
+				oncomplete="confirmDeletion.show()"
+				styleClass="btn btn-danger btn-small">
+				<f:setPropertyActionListener target="#{contactBean.selectedContact}"
+					value="#{contact}" />
+			</p:commandButton>
+		</div>
+	</p:tab>
+</ui:composition>

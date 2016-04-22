@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+		<p:growl id="growl" showDetail="true" sticky="false" />
+		<p:idleMonitor
+			timeout="#{sessionExpireControllerBean.sessionExpireTimeout}"
+			onidle="expiresDialog.show()" update="modalDialog">
+		</p:idleMonitor>
+
+		<p:dialog id="modalDialog" closable="false"
+			header="#{msgSessionExpire['hdrSessionExpire']}"
+			widgetVar="expiresDialog" modal="true" height="100">
+			<div class="row rowPaddingLeft">
+				<div class="span5">
+					<h:outputText value="#{msgSessionExpire['txtSessionExpire']}" />
+				</div>
+			</div>
+			<div class="row rowPaddingLeft">
+				<div class="span5 offset1">
+					<p:commandButton value="#{msgSessionExpire['btnContinue']}"
+						title="#{msgSessionExpire['btnContinue']}"
+						icon="envicon-med-save envicon-white" ajax="false"
+						styleClass="btn btn-success" />
+				</div>
+			</div>
+		</p:dialog>
+	</h:form>
+</ui:composition>

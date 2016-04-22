@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<f:view contentType="text/html" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fstation="http://fstation.com/jsf/fstation">
+
+	<f:verbatim>
+		<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+		<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+		<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+		<!--[if gt IE 8]><!-->
+	</f:verbatim>
+	<html class="no-js">
+<h:head>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<ui:include src="includes/includecssjs.xhtml" />
+
+</h:head>
+<h:body>
+	<fstation:menu />
+	<h:form>
+
+
+		<table width="100%" border="0">
+			<tr>
+				<td width="100%" align="center" class="pg_title">Supplier
+					Registration</td>
+			</tr>
+		</table>
+
+
+		<table width="60%" border="0" class="dataTbl" align="center">
+			<col width="20%" />
+			<col width="80%" />
+			<tr>
+				<td align="right"><h:outputText value="Supplier Name: "
+						styleClass="mandatoryLabel" />
+				</td>
+				<td><h:inputText value="" maxlength="50" size="30" />
+				</td>
+			</tr>
+
+			<tr>
+				<td align="right"><h:outputText value="CNIC/NTN: " />
+				</td>
+				<td><h:inputText value="" maxlength="15" />
+				</td>
+			</tr>
+
+			<tr>
+				<td align="right"><h:outputText value="Conctact Number: " />
+				</td>
+				<td><h:inputText value="" maxlength="50" />
+				</td>
+			</tr>
+
+			<tr>
+				<td align="right"><h:outputText value="Address: " />
+				</td>
+				<td><h:inputText value="" maxlength="50" size="50" />
+				</td>
+			</tr>
+		</table>
+		<table width="60%" border="1" class="dataTbl" align="center">
+			<tr>
+				<td align="center"><p:commandButton value="Reset" id="btnReset"
+						type="reset" styleClass="standardBtn" /> <p:commandButton
+						value="Delete" id="btnDelete" styleClass="standardBtn" /> <p:commandButton
+						value="Save" id="btnSave" styleClass="standardBtn" /></td>
+			</tr>
+		</table>
+
+		<table width="60%" border="1" class="dataTbl" align="center">
+			<tr>
+				<td align="center"><p:dataTable id="tblTemplates"
+						var="template" paginator="true" rows="15"
+						paginatorPosition="bottom">
+
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Supplier Name" />
+							</f:facet>
+							<h:outputText value="" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="CNIC/NTN" />
+							</f:facet>
+							<h:outputText value="" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Supplier Cell#" />
+							</f:facet>
+							<h:outputText value="" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Supplier Address" />
+							</f:facet>
+							<h:outputText value="" />
+						</p:column>
+					</p:dataTable>
+				</td>
+			</tr>
+		</table>
+		<br />
+
+
+	</h:form>
+</h:body>
+	</html>
+</f:view>

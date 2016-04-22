@@ -1,0 +1,247 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:commandButton value="#{msgFileHistory['btnDelete']}"
+		id="btnDeleteFile" icon="envicon-med-trash envicon-white"
+		styleClass="btn btn-danger" update="confirmDialog"
+		action="#{fileHistoryBean.prepareFileNames}"
+		oncomplete="confirmDeletion.show()"
+		rendered="#{fileHistoryBean.showDelete}" />
+
+	<p:dataTable id="tblFiles" var="file"
+		value="#{fileHistoryBean.processedFiles}" paginator="true" rows="10"
+		paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
+		rowsPerPageTemplate="10" paginatorPosition="bottom"
+		sortBy="#{file.scheduleDate}" sortOrder="descending"
+		selection="#{fileHistoryBean.selectedFiles}"
+		rowKey="#{file.processedFileId}">
+
+		<p:ajax event="rowToggle" update="tblCycles"
+			listener="#{fileHistoryBean.onRowToggle}" />
+
+		<p:ajax event="rowSelectCheckbox"
+			listener="#{fileHistoryBean.onRowSelect}" update="@form" />
+		<p:ajax event="rowUnselectCheckbox"
+			listener="#{fileHistoryBean.onRowUnselect}" update="@form" />
+		<p:ajax event="toggleSelect"
+			listener="#{fileHistoryBean.onToggleSelect}" update="@form" />
+
+		<p:column selectionMode="multiple"
+			rendered="#{fileHistoryBean.deleteRendered}"
+			disabledSelection="#{file.exported}" />
+
+		<p:column>
+			<p:rowToggler />
+		</p:column>
+
+		<p:column sortBy="#{file.scheduleDate}" sortOrder="descending">
+			<f:facet name="header">
+				<span style="padding-left: 5px"><h:outputText
+						style="font-size:9px" value="#{msgFileHistory['hdrPayrollDate']}" />
+				</span>
+			</f:facet>
+
+			<h:outputText value="#{file.scheduleDate}">
+				<f:convertDateTime pattern="MM/dd/yyyy" />
+			</h:outputText>
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{msgFileHistory['hdrFileName']}"
+					style="font-size:9px" />
+			</f:facet>
+
+			<h:outputText value="#{file.fileName}" />
+		</p:column>
+
+		<p:column sortBy="#{file.submittedDate}" sortOrder="descending">
+			<f:facet name="header">
+				<span style="padding-left: 5px"><h:outputText
+						style="font-size:9px" value="#{msgFileHistory['hdrSubmitDate']}" />
+				</span>
+			</f:facet>
+
+			<h:outputText value="#{file.submittedDate}">
+				<f:convertDateTime pattern="MM/dd/yyyy" />
+			</h:outputText>
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{msgFileHistory['hdrPlan']}"
+					style="font-size:9px" />
+			</f:facet>
+
+			<h:outputText value="#{file.plan.name}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{msgFileHistory['hdrContext']}"
+					style="font-size:9px" />
+			</f:facet>
+
+			<h:outputText value="#{file.nextHighestAfterPlan.name}" />
+		</p:column>
+
+		<p:column sortBy="#{file.exportedDate}" sortOrder="descending">
+			<f:facet name="header">
+				<span style="padding-left: 5px"><h:outputText
+						style="font-size:9px" value="#{msgFileHistory['hdrExportDate']}" />
+				</span>
+			</f:facet>
+
+			<h:outputText value="#{file.exportedDate}">
+				<f:convertDateTime pattern="MM/dd/yyyy" />
+			</h:outputText>
+		</p:column>
+
+		<p:rowExpansion>
+			<p:panelGrid style="margin-left:40px"
+				rendered="#{file.reason != null}">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msgFileHistory['off.schedule.reason']}" />
+						</p:column>
+					</p:row>
+				</f:facet>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="#{file.reason}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:poll interval="6" update="tblCycles"
+				listener="#{fileHistoryBean.checkEndtimePresent}" />
+
+			<p:dataTable rendered="#{(not file.exported)}" id="tblCycles"
+				value="#{file.payrollValidationCycles}" var="cycle"
+				sortBy="#{cycle.starttime}" sortOrder="descending"
+				styleClass="span18 pull-right">
+
+				<p:column rendered="#{not cycle.processingCanceled}">
+					<f:facet name="header">
+						<h:outputText value="#{msgFileHistory['hdrStartTime']}" />
+					</f:facet>
+
+					<h:outputText value="#{cycle.starttime}">
+						<f:convertDateTime type="date" pattern="MM/dd/yyyy hh:mm:ss a" />
+					</h:outputText>
+				</p:column>
+
+				<p:column rendered="#{not cycle.processingCanceled}">
+					<f:facet name="header">
+						<h:outputText value="#{msgFileHistory['hdrEndTime']}" />
+					</f:facet>
+
+					<h:outputText value="#{cycle.endtime}">
+						<f:convertDateTime type="date" pattern="MM/dd/yyyy hh:mm:ss a" />
+					</h:outputText>
+				</p:column>
+
+				<p:column rendered="#{not cycle.processingCanceled}">
+					<f:facet name="header">
+						<div class="center">
+							<h:outputText value="#{msgFileHistory['hdrRecordsProcessed']}" />
+						</div>
+					</f:facet>
+					<div class="center">
+						<h:outputText value="#{cycle.numrowsprocessed}" />
+					</div>
+				</p:column>
+
+				<p:column rendered="#{not cycle.processingCanceled}">
+					<f:facet name="header">
+						<div class="center">
+							<h:outputText value="#{msgFileHistory['hdrErrorsWarnings']}" />
+						</div>
+					</f:facet>
+
+					<div class="center">
+						<h:outputText value="#{cycle.numerrors}" />
+						/
+						<h:outputText value="#{cycle.numwarning}" />
+					</div>
+				</p:column>
+
+				<p:column rendered="#{not cycle.processingCanceled}">
+					<f:facet name="header">
+						<div class="center">
+							<h:outputText value="#{msgFileHistory['hdrEditExport']}" />
+						</div>
+					</f:facet>
+
+					<p:commandLink action="#{fileHistoryBean.goToEditFile}"
+						styleClass="envicon-med-edit"
+						title="#{msgFileHistory['btnViewFile']}"
+						disabled="#{not (cycle eq file.payrollValidationCycles[0])}"
+						rendered="#{cycle.numerrors ne 0 and cycle.endtime ne null}">
+						<f:setPropertyActionListener
+							target="#{fileHistoryBean.selectedProcessedFiles}"
+							value="#{file}" />
+					</p:commandLink>
+					<p:commandLink styleClass="envicon-med-edit"
+						oncomplete="fileOptions.show()"
+						disabled="#{not (cycle eq file.payrollValidationCycles[0])}"
+						title="#{msgFileHistory['btnViewFile']}"
+						update=":fileHistoryForm:fileOptionsDialog"
+						rendered="#{cycle.numerrors eq 0 and cycle.endtime ne null}">
+						<f:setPropertyActionListener
+							target="#{fileHistoryBean.selectedProcessedFiles}"
+							value="#{file}" />
+					</p:commandLink>
+				</p:column>
+
+				<p:column rendered="#{not fileHistoryBean.fileProcessingEnds}">
+					<h:outputText style="font-weight:bold; color:red;"
+						id="fileStillinProgress"
+						value="#{msgFileHistory['txtFileStillinProgress']}" />
+				</p:column>
+
+				<p:column rendered="#{cycle.processingCanceled}">
+					<div class="center">
+						<h:outputText value="#{cycle.reasonCanceled}" />
+					</div>
+				</p:column>
+			</p:dataTable>
+
+			<div class="offset4">
+				<h:outputText rendered="#{file.exported}" style="font-size:9px"
+					value="#{fileHistoryBean.exportStatusMap[file.processedFileId]}" />
+			</div>
+		</p:rowExpansion>
+	</p:dataTable>
+
+	<p:dialog id="fileOptionsDialog"
+		header="#{msgFileHistory['hdrFileOptions']} : #{fileHistoryBean.selectedProcessedFiles.fileName}"
+		severity="alert" widgetVar="fileOptions">
+
+		<p:commandButton id="editFile"
+			value="#{msgFileHistory['btnEditFile']}"
+			action="#{fileHistoryBean.goToEditFile}" />
+
+		<p:commandButton id="exportFile"
+			value="#{msgFileHistory['btnExportFile']}"
+			action="#{fileHistoryBean.goToExportFile}" />
+	</p:dialog>
+
+	<p:confirmDialog id="confirmDialog"
+		message="#{msgFileHistory['fileDeleteCheck']} #{fileHistoryBean.selectedFileNames}"
+		header="#{msgFileHistory['hdrDelete']}" severity="alert"
+		widgetVar="confirmDeletion">
+
+		<p:commandButton id="confirm" value="#{msgFileHistory['txtYes']}"
+			update="@form" oncomplete="confirmDeletion.hide()"
+			action="#{fileHistoryBean.deleteFiles}" />
+
+		<p:commandButton id="decline" value="#{msgFileHistory['txtNo']}"
+			onclick="confirmDeletion.hide()" type="button" />
+
+	</p:confirmDialog>
+
+</ui:composition>

@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:confirmDialog id="confirmDialog"
+		message="#{message}"
+		header="#{header}" severity="alert"
+		widgetVar=deleteCheckDialog>
+
+		<p:commandButton id="confirm"
+			value="#{msgCommon['yes']}" update="@form"
+			oncomplete="deleteCheckDialog.hide()"
+			action="#{deleteAction}" />
+
+		<p:commandButton id="decline"
+			value="#{msgCommon['no']}"
+			onclick="deleteCheckDialog.hide()" type="button" />
+	</p:confirmDialog>
+
+</ui:composition>

@@ -1,0 +1,1221 @@
+@import "../bootstrap/less/bootstrap.less";
+
+// -------------------------------------------------------------------------------------|
+// Override Bootstrap Variables
+// -------------------------------------------------------------------------------------|
+
+@gridColumns:         24;
+@gridColumnWidth:     30px;
+@gridGutterWidth:     10px;
+
+@btnPrimaryBackground:          #779bd1;
+@btnPrimaryBackgroundHighlight: #4480c2;
+@btnInverseBackground:          lighten(#535354, 30%);
+@btnInverseBackgroundHighlight: lighten(#404041, 30%);
+@baseFontSize: 12px;
+
+.tooltip-inner {
+	text-align: left;
+}
+
+@iconSpritePath:      "../../bootstrap/img/glyphicons-halflings.png";
+@iconWhiteSpritePath: "../../bootstrap/img/glyphicons-halflings-white.png";
+
+@import "env_sprites.less";
+
+// -------------------------------------------------------------------------------------|
+// Custom Variables
+// -------------------------------------------------------------------------------------|
+@primaryColor:          #3F82D0;	// Primary site color.
+@primaryFont:		    'Helvetica Neue', Helvetica, Arial, sans-serif;
+@windowBackground:      #dfe0e2;	// Color of the left and right of each page.
+@defaultFontColor:      #343434;    // Font color used througout the site unless overidden with another color.
+@widgetBackground:      #f1f1f2;    // Used for the copyright section in the footer and all other widget backgrounds.
+@highlightColor:        #9bc6e6;
+@inputText:             darken(@primaryColor, 20%);
+@verticalSpacing:       20px;
+
+// Page Section Variables.
+@sectionHeaderText:     @white;     // Color used for the header text of page sections.
+
+// Datatable Variables.
+@datatableHeaderBackground:      @white;
+@headerText:                     #008ed3;
+@datatableRowEvenBackground:     @white;
+@datatableRowOddBackground:      @white;
+@datatableRowHover:              @widgetBackground;
+	
+// Element Group Variables.
+@elementBorder:         @windowBackground;
+@elementBackground:     @widgetBackground;
+
+// Default Link Variables.  Used for all links in the site unless overidden.	
+@defaultLink:           @primaryColor;
+@defaultLinkHover:      darken(@defaultLink, 20%);
+
+// Delete Link Variables.  Used for delete links throughout the site.
+@deleteLink:            #8b8c8e;
+@deleteLinkHover:       darken(@deleteLink, 20%);
+
+// Login Page Variables.
+@loginOuterBackgroundColor:  @black;
+@loginOuterBackgroundAlpha:  0.6;
+@loginInnerBackground:  @white;
+ 
+// Header Section Variables.
+@headerLink:            #bfbfbf;
+@headerLinkHover:       lighten(@headerLink, 20%);
+
+// Footer Section Variables.
+@footerLink:            #bfbfbf;
+@footerLinkHover:       lighten(@footerLink, 20%);
+@footerCopyrightText:   #bcbdc0;
+
+// Page Title Section Variables.
+@titleText:             @white;
+	
+// Pill Variables
+@pillDefaultText:       @white;
+@pillDefaultBackground: #c8c9cb;
+@pillHoverText:         @white;
+@pillHoverBackground:   darken(@pillDefaultBackground, 20%);
+@pillActiveText:        @white;
+@pillActiveBackground:  @primaryColor;
+	
+// Gradient Variables
+@gradientPrimaryStart:  #6582a2;
+@gradientPrimaryEnd:    #3e6891;	
+		
+@gradientSecondaryStart:#4b484a;
+@gradientSecondaryEnd:  #322f31;
+
+@gradientDefaultStart:  #d1d2d4; 
+@gradientDefaultEnd:    #bdbfc2;
+
+@gradientHoverStart:    #9bc6e6;
+@gradientHoverEnd:      #7ab1d8;
+		
+@gradientActiveStart:   darken(@gradientDefaultStart, 25%);
+@gradientActiveEnd:	    darken(@gradientDefaultEnd, 25%);
+
+	
+// -------------------------------------------------------------------------------------|
+// Custom Styles
+// -------------------------------------------------------------------------------------|
+body {
+	font-family: @primaryFont !important;
+	color: @defaultFontColor;
+	background-color: @windowBackground;
+}
+html,body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.primaryGradient {
+	#gradient > .vertical(@gradientPrimaryStart, @gradientPrimaryEnd);
+}
+
+.secondaryGradient {
+	#gradient > .vertical(@gradientSecondaryStart, @gradientSecondaryEnd);
+}
+
+.defaultGradient {
+	#gradient > .vertical(@gradientDefaultStart, @gradientDefaultEnd);
+}
+
+.hoverGradient {
+	#gradient > .vertical(@gradientHoverStart, @gradientHoverEnd);
+}
+
+.activeGradient {
+	#gradient > .vertical(@gradientActiveStart, @gradientActiveEnd);
+}
+
+form {
+    padding: 0px;
+    margin: 0px;
+}
+
+.sectionCenter {
+	.center-block();
+	float: none;
+}
+
+.center {
+	text-align: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+a {
+	color: @defaultLink;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: @defaultLinkHover;
+}
+
+.loading {
+	visibility: hidden;
+	background-image: none !important;  
+}
+
+input, select, textarea {
+    color: @inputText !important;
+    -webkit-text-fill-color: @inputText !important;
+	font-family: @primaryFont !important;
+	resize: none; 
+}
+
+.textLeft {
+	text-align: left;
+}
+
+select[multiple], select[size] {
+    margin: 0px;	
+}
+
+.selected {
+	background: red;
+}
+
+.rowSpace {
+    margin-top: 15px;
+}
+
+.centerVertical {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.centerVertical * {
+    vertical-align: middle;
+}
+
+.centerVertical {
+    display: block;
+}
+
+.centerVertical span {
+    display: inline-block;
+    height: 100%;
+    width: 1px;
+}
+
+.titleHelp {
+	margin-top: 18px;
+}
+
+.titleHelp a {
+    background: url(../images/question.png) no-repeat;
+    background-size: 20px 20px;
+    display: block;
+    color: @headerLinkHover;
+    padding: 1px 0 0 25px;
+    text-align: left;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.titleHelp a:hover {
+    color: @headerLinkHover;      
+    text-decoration: none;  
+}
+
+.ui-expanded-row-content {
+	.ui-datatable th {
+	   background: @datatableRowHover !important; 
+	}
+	
+	.ui-state-default {
+	   border-radius: 0px !important;
+	}
+	
+	table {
+	   border: 1px solid @elementBorder; 
+	}
+}
+.radioOptions{
+     td {
+        padding-left: 10px;
+        margin-right: 10px;  
+    }
+    label {
+        padding-top: 4px;
+    }
+}
+// End Custom Styles
+
+
+// -------------------------------------------------------------------------------------|
+// Override Bootstrap Styles
+// -------------------------------------------------------------------------------------|
+
+.nav-pills > li > a {
+	color: @pillDefaultText;
+    background-color: @pillDefaultBackground;
+}
+
+.nav-pills > li > a:hover {
+	color: @pillHoverText;
+    background-color: @pillHoverBackground;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    color: @pillActiveText;
+    background-color: @pillActiveBackground;
+}
+
+label, input, button, select, textarea {
+	font-family: @primaryFont !important;
+}
+
+.container:before,
+.container:after {
+	display: block;  // Fixes spacing issue which caused #pageTitleContainer to require: margin-top: -10px
+}
+
+// End Override Bootstrap Styles
+
+
+// -------------------------------------------------------------------------------------|
+// Override jQueryUI Styles
+// -------------------------------------------------------------------------------------|
+
+.ui-widget {
+	font-size: 12px;
+}
+
+.ui-spinner_holder input[type="text"] {
+    height: auto !important;
+    margin-bottom: 0 !important;
+    width: 30px;
+    text-align: left;
+}
+
+.ui-spinner_holder {
+    height: auto;
+    margin-bottom: 10px;
+    width: auto;
+}
+    
+
+
+#uploadeFileContainer {
+	.fileupload-buttonbar {
+	    margin: 0px;
+	    padding: 10px;
+	    
+	    .fileinput-button {
+	        .btn();
+	        .btn-primary();
+	    }
+	    
+	    .start {
+	        .btn();
+	        .btn-success();
+	    }
+	
+	    .cancel {
+	        .btn();
+	        .btn-danger();
+	    }
+	}
+	
+    .ui-progressbar.ui-widget-content {
+        margin-bottom: 0px;
+    }
+    
+    .progress {
+        background: none;
+        .border-radius(0px 0 0 0px);
+        .box-shadow(0 0 0px rgba(255, 255, 255, 1));
+    }
+    
+    .start button {
+        .btn();
+        .btn-success();
+    }
+    
+    .cancel button {
+        .btn();
+        .btn-danger();
+    }
+    
+	.ui-icon-plusthick {
+	    .envicon-med-paper();
+	    margin-top: -12px !important;
+	    height: 24px;
+	    width: 24px;
+	}
+	
+	.ui-icon-arrowreturnthick-1-n {
+	    .envicon-med-cloud();
+	    margin-top: -12px !important;
+	    height: 24px;
+	    width: 24px;
+	}
+	
+	.ui-icon-cancel {
+	    .envicon-med-close();
+	    margin-top: -12px !important;
+	    height: 24px;
+	    width: 24px;
+	}
+}
+	
+.ui-widget-overlay {
+    opacity: .50 !important;
+}
+
+// Accordion Styles
+.ui-accordion > .ui-widget-content {
+	background: none;
+/* 	background-color: @widgetBackground; */
+}
+
+.ui-accordion a {
+    text-decoration: none;
+}
+
+.ui-accordion > .ui-state-default {
+	.defaultGradient;
+	.box-shadow(0 0 0px rgba(255, 255, 255, 1));
+}
+
+.ui-accordion > .ui-state-hover {
+	.hoverGradient;
+}
+
+.ui-accordion > .ui-state-active {
+	.activeGradient;	
+}
+
+.ui-accordion > .ui-state-default a, .ui-accordion > .ui-state-default a:link, .ui-accordion > .ui-state-default a:visited {
+	color: @white;
+	text-shadow: none;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.ui-accordion > .ui-state-active a, .ui-accordion > .ui-state-active a:link, .ui-accordion > .ui-state-active a:visited {
+	color: @white;
+	text-shadow: none;
+}
+
+.ui-accordion > .ui-accordion-header {
+	border: none;
+	.border-radius(6px);
+	margin-top: 2px;
+	padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ui-accordion {
+	padding-bottom: 5px;
+}
+
+.ui-accordion > .ui-state-active {
+	.border-bottom-radius(0px);
+}
+
+.ui-accordion > .ui-accordion-content {
+	border-color: @elementBorder;
+	border-width: 1px;
+	border-style: solid;
+	background: none;
+/* 	background-color: @widgetBackground !important; */
+	.border-bottom-radius(6px);
+}
+// Accordion Styles End
+
+
+// Datatable Styles
+.ui-datatable {
+    input[type="checkbox"] {
+        margin: 0px;
+    }   
+
+    .ui-selection-column .ui-chkbox-all {
+        margin: 0px;
+    }
+    
+	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+	    color: @primaryColor;
+	    background-color: @datatableRowHover;
+	}
+	
+	.ui-chkbox-all {
+	   padding-left: 10px;
+	}
+} 	
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+   white-space: normal; 
+}
+		
+.ui-datatable .ui-widget-content, .ui-datatable .ui-widget-header { 
+    border: none;
+}
+
+.ui-datatable .ui-datatable-even {
+    background: @datatableRowEvenBackground;
+}
+
+.ui-datatable .ui-datatable-odd {
+    background: @datatableRowOddBackground;
+}
+
+.ui-datatable tr:hover {
+    background: @datatableRowHover;
+}
+
+.ui-datatable th {
+    color: @headerText !important;
+    font-size: 12px !important;
+    text-align: left !important;
+    border: none !important;
+    background: @datatableHeaderBackground !important;
+    .box-shadow(0 0 0px rgba(255, 255, 255, 1)) !important;
+    padding: 0px !important;
+}
+
+.ui-datatable td {
+    background: @datatableHeaderBackground;
+    border: none;
+    font-size: 12px !important;
+}
+
+.ui-datatable .ui-inputfield {
+    color: @inputText !important;
+    -webkit-text-fill-color: @inputText !important;
+    font-size: 12px;
+    font-family: @primaryFont !important;
+    resize: none; 
+}
+
+.ui-selectonemenu-list-item {
+    font-size: 12px;
+}
+
+.ui-datatable .ui-datatable-data td, .ui-datatable .ui-datatable-data-empty td {
+	border: none;
+	border-top: 1px solid @windowBackground;
+	background: none;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.ui-datatable .ui-paginator {
+	padding-top: @verticalSpacing;	
+}
+
+.ui-datatable [class*="span"] {
+    margin-left: 0px;	
+}
+
+// JSF selectOneRadio display radios in a datatable.  This class removes the td border from the datatable classes above
+.radiogroup td {
+    border: none !important;
+}
+
+.ui-datatable .ui-widget-content .btn-small {
+    padding: 0px !important;    
+}
+
+.ui-datatable .ui-widget-content .btn-small span {
+    padding: 4px 8px 4px 8px !important;
+}
+// Datatable Styles End
+
+.ui-state-highlight .ui-icon {
+    background-image: url("/eis-airedale-web/javax.faces.resource/images/ui-icons_333333_256x240.png.xhtml?ln=primefaces-bootstrap");
+}
+
+.ui-selectoneradio td {
+    border: 0px !important;	
+    padding-bottom: 8px !important;
+}
+
+// Dialog Styles
+    .ui-dialog.ui-widget-content .ui-dialog-titlebar {
+        .secondaryGradient;
+        .border-top-radius(2px);
+    }
+
+    .ui-dialog .ui-dialog-title {
+        color: @white;
+        font-size: 13px !important;
+    }
+
+    .ui-dialog.ui-widget-content .ui-dialog-titlebar-close {
+        background: @windowBackground;  
+        margin-top: 5px;
+    }
+    
+    .ui-dialog-titlebar > .ui-state-hover {
+        background: darken(@windowBackground, 20%) !important;
+    }
+    
+    .ui-dialog > h3 {
+        line-height: 10px;
+        margin-bottom: 40px;
+    }
+    
+// Dialog Styles End
+
+// Overides to force bootstrap button styles inside primefaces moduless.
+.ui-widget-content .btn {
+    .btn();
+}
+
+.ui-widget-content .btn-primary {
+    .btn-primary();
+}
+
+.ui-widget-content .btn-warning {
+    .btn-warning();
+}
+
+.ui-widget-content .btn-warning {
+    .btn-warning();
+}
+
+.ui-widget-content .btn-danger {
+    .btn-danger();
+}
+
+.ui-widget-content .btn-success {
+    .btn-success();
+}
+
+.ui-widget-content .btn-info {
+    .btn-info();
+}
+
+.ui-widget-content .btn-inverse {
+    .btn-inverse();
+}
+
+.ui-widget-content .btn-large {
+    .btn-large();
+}
+
+.ui-widget-content .btn-small {
+    .btn-small();
+    font-size: 12px !important;
+}
+
+.ui-widget-content .btn-mini {
+    .btn-mini();
+}
+// End Button override.
+
+.highlight {
+	background: @highlightColor !important;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover {
+    background-position: 0 0px;
+    .transition(none); 
+}
+
+.btn-status.ui-button {
+    .btn-danger !important;
+}
+
+.btn-status.ui-state-active {
+    .btn-success !important;
+}
+
+.btn-toggle.ui-button {
+    .btn-inverse !important;
+    font-size: 10px !important;
+}
+
+.btn-toggle.ui-state-active {
+    .btn-primary !important;
+    font-size: 10px !important;
+}
+
+
+.ui-cell-editor-input input {
+    margin-bottom: 0px;
+}
+
+
+// Paginator Styles
+/* .ui-paginator > .ui-state-disabled, .ui-paginator-pages > .ui-state-disabled { */
+/*  color: @defaultFontColor; */
+/*  border: none; */
+/* } */
+
+/* .ui-paginator > .ui-state-default, .ui-paginator-pages > .ui-state-default { */
+/*  background: @widgetBackground !important; */
+/*  color: @defaultFontColor; */
+/*  border: none; */
+/* } */
+
+/* .ui-paginator > .ui-state-hover, .ui-paginator-pages > .ui-state-hover { */
+/*  background: darken(@widgetBackground, 20%) !important; */
+/*  color: @defaultFontColor; */
+/*  border: none; */
+/*  .box-shadow(0 0 0px rgba(255, 255, 255, 1)); */
+/* } */
+
+/* .ui-paginator > .ui-state-active, .ui-paginator-pages > .ui-state-active { */
+/*  background: @highlightColor !important; */
+/*  color: @defaultFontColor; */
+/*  border: none; */
+/* } */
+
+/* .ui-paginator-pages { */
+/*  border: 1px solid @elementBorder; */
+/*  padding: 0px !important; */
+/*  .makeColumn(15); */
+/*  margin-left: 0 !important; */
+/*  margin-right: 0 !important; */
+/*  background: @widgetBackground; */
+/* } */
+
+/* .ui-paginator-page { */
+/*  padding: 10px !important; */
+/* } */
+
+/* .ui-paginator-next, .ui-paginator-prev { */
+/*  border: 1px solid @elementBorder !important; */
+/*  .makeColumn(2); */
+/*  margin-right: 0 !important; */
+/*  padding: 10px 0 !important; */
+/*  background: @widgetBackground !important; */
+/*  text-align: center; */
+/* } */
+
+/* .ui-paginator-prev { */
+/*  .border-radius(6px 0 0 6px); */
+/* } */
+
+/* .ui-paginator-next { */
+/*  margin-left: 0 !important; */
+/*  .border-radius(0 6px 6px 0); */
+/*  span { */
+/*      float: right; */
+/*  } */
+/* } */
+// Paginator Styles End
+
+// End Override jQueryUI Styles
+
+
+
+// -------------------------------------------------------------------------------------|
+// Page Container Styles
+// -------------------------------------------------------------------------------------|
+#pageContainer {
+    min-height: 100%;
+    position: relative;
+}
+
+#headerTopContainer {
+	height: 60px;
+	.primaryGradient;
+	
+	.logo {
+		height: 35px;
+		padding-top: 12px;
+	}
+	
+	#userContainer {
+	   line-height: 60px;
+
+        .userName {
+	        color: @white;
+	        font-size: 14px;
+	    }
+	    
+	    a {
+	       margin-left: 15px;
+	       color: @headerLink;
+	       font-size: 11px;
+	       text-decoration: none;
+	    }
+	    
+	    a:hover {
+            cursor: pointer;
+            text-decoration: none;
+            color: @headerLinkHover;	    
+	    }
+	}
+} // #headerTopContainer
+
+
+#menuContainer {
+	.secondaryGradient;
+	height: 46px;
+	.box-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+
+	.ui-menubar  {
+	    border: none;
+	   	background-color: transparent;
+	   	background-image: none;
+	   	.box-shadow(none);
+	   	filter: none; // for IE
+	}
+
+	.ui-menuitem-link {
+		background: none;
+		border: none;	
+		color: @headerLink;
+		font-size: 12px !important;
+		font-weight: bold;
+		padding-right: 15px;
+		line-height: 23px;
+	}
+	
+	.ui-menuitem-active {
+		background: none;
+		border: none;
+	}
+
+	.ui-state-hover {
+		color: @headerLinkHover !important;
+		font-weight: bold;
+		background: none !important;
+		border: none !important;
+		filter: none !important;
+		.box-shadow(0 0 0 @black);
+	}
+	
+	.ui-widget-content {
+	   .secondaryGradient;
+	   
+	}
+	
+	.ui-menuitem-text {
+	   color: @white;
+	}
+} // #menuContainer
+
+
+#bodyContainer {
+    padding-bottom: 165px; /* Height of the footer */
+}
+
+#contentContainer {
+	padding-top: 10px;
+	padding-bottom: 50px;
+	margin-bottom: 30px;
+	margin-top: 0px;
+	background-color: @white;
+	width: 950px;
+	.sectionCenter;
+	.box-shadow(0 0 7px rgba(150, 150, 150, 1.0));
+	.border-bottom-radius(5px);
+} // #contentContainer
+
+
+#footerContainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 165px; /* Height of the footer */
+    background: #6cf;
+	
+	ul {
+		list-style-type: none;
+		margin: 0px;
+		padding: 10px;
+	}
+
+	li {
+		font-family: @primaryFont;
+		font-weight: bold;
+		display: inline;
+		padding: 5px;
+	}
+	
+	#footerCopyrightContainer {
+		.box-shadow(0 0 7px rgba(150, 150, 150, 1.0));
+		text-align: center;
+		height: 80px;
+		background-color: @widgetBackground;
+		padding-top: @verticalSpacing;
+
+		.coyrightText {
+			color: @footerCopyrightText;
+		}
+	}		
+
+	#footerLinkContainer {
+		.box-shadow(0 0 7px rgba(150, 150, 150, 1.0));
+	    .secondaryGradient;
+		text-align: center;
+		height: 50px;
+		padding-top: 15px;
+
+		a {
+			color: @footerLink;
+			text-decoration: none;
+		}
+		
+		a:hover {
+			color: @footerLinkHover;
+		}
+	}
+} // #footerContainer
+
+.marginTop{
+    margin-top: @verticalSpacing
+}
+
+.marginBottom {
+    margin-bottom: @verticalSpacing
+}
+
+.sectionContainer {
+	.border-radius(5px);
+	.box-shadow(0 0 7px rgba(150, 150, 150, 1.0));
+
+	.sectionHeader {
+		.border-top-radius(5px);
+		.secondaryGradient;
+		color: @sectionHeaderText;
+		height: 30px;
+		padding-top: 10px;
+		padding-left: 22px;
+		font-size: 13px;
+	}
+	
+	.sectionContent {
+		padding-top: @verticalSpacing;
+		padding-bottom: @verticalSpacing;
+	}
+}
+
+.rowPaddingLeft {
+    padding-left: 10px;	
+}
+
+.elementContainer {
+	.elementBorder {
+		.border-radius(5px);
+		.sectionCenter;
+		border-style: solid;
+		border-width: 1px;
+		border-color: @elementBorder;
+		padding-bottom: 5px;
+		background-color: @elementBackground;
+	}
+
+	.elementHeader {
+		.border-top-radius(5px);
+		color: @headerText;
+		height: 30px;
+		font-weight: bold;
+	}
+
+	.elementContent {
+		padding-top: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		
+		.row {
+			min-height: 40px;	
+			*height: 40px;
+		}		
+	}
+}
+
+#pageTitleContainer {
+	.primaryGradient;
+	.sectionCenter;
+	.box-shadow(0 0 7px rgba(150, 150, 150, 1.0));
+	color: @titleText;
+	
+	position: relative;
+	margin: 0 -10px 0px -10px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	
+	h1 {
+		font-size: 32px;
+		line-height: 40px;
+	}
+}	
+	
+#pageTitleContainer:before, #pageTitleContainer:after {
+	content: " ";
+	border-top: 10px solid darken(@primaryColor, 40%);
+	position: absolute;
+	bottom: -10px;
+}
+
+#pageTitleContainer:before {
+	border-left: 10px solid transparent;
+	left: 0px;
+}
+
+#pageTitleContainer:after {
+	border-right: 10px solid transparent;
+	right: 0px;
+}
+
+.carousel {
+	
+    a {
+        color: @headerLink;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: @headerLinkHover; 
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+    .left img {
+        padding-right: 2px;
+    }
+    
+    .right img {
+        padding-left: 5px;
+    }
+}
+// End Page Container Styles
+
+
+// -------------------------------------------------------------------------------------|
+// Page Specific Styles
+// -------------------------------------------------------------------------------------|
+#pgLogin {
+    background-image: url('../images/open_field.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+
+    .loginOuterContainer {
+        background-color: lighten(@loginOuterBackgroundColor,15%); // Fallback if alpha not supported
+        #translucent > .background(@loginOuterBackgroundColor,@loginOuterBackgroundAlpha);
+        padding-bottom: 30px;
+        .border-radius(10px);
+    }
+
+    .loginInnerContainer {
+        background-color: @loginInnerBackground;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding-left: 8px;
+        .border-radius(10px);
+    }
+
+    .loginInnerContainer form {
+        padding: 20px 25px 20px 25px;
+    }
+
+    .align-center {
+        text-align: center;
+    }
+
+    .loginLogo {
+        padding: 10px;
+    }
+
+    .loginHeader {
+        font-size: 24px;
+        font-weight: 300;
+        color: @white;
+        padding-top: 30px;
+    }
+
+    .loginSubHeader {
+        font-size: 16px;
+        font-weight: 300;
+        color: @white;
+        padding-top: 10px;
+    }
+
+    .smallText {
+        font-size: 10px;
+        font-weight: 300;
+    }
+} // #pgLogin
+
+#pgHome {
+	#messageContainer {
+	   padding-bottom: @verticalSpacing;
+    }
+} // #pgHome
+
+#pgUserSetup {
+	#editUserDialog {
+        tr {
+            border: none !important;
+        }
+
+		td {
+		    border: none;
+		    font-size: 12px !important;
+		    text-align: left;
+        }
+
+        td.ui-widget-header {
+            color: @primaryColor;
+            background: @datatableHeaderBackground;
+        }
+	}
+}
+
+#pgEmployerSetup,
+#pgClientSetup,
+#pgPlanSetup,
+#pgLocationSetup {
+	#setupInformation {
+        label {
+            text-align: left;
+            padding-top: 5px;
+            font-weight: bold;
+        }
+    }
+
+    #setupStructure {
+        label {
+            padding-top: 3px;
+            text-align: left;
+            font-weight: normal;
+        }
+    }
+
+    .uploadLogo {
+        margin-top: @verticalSpacing;
+        margin-bottom: @verticalSpacing;
+    }
+
+    .ui-accordion > .ui-accordion-content {
+        background-color: @widgetBackground !important;
+    }
+    
+	#brandingContainer {
+		.ui-datatable td {
+			font-size: 12px !important;
+		}
+	
+		.fileupload-buttonbar {
+		    margin: 0px;
+		    
+		    
+		    .fileinput-button {
+		        .btn-small();
+		        .btn-primary();
+		    }
+		    
+		    .start {
+		        .btn-small();
+		        .btn-success();
+		    }
+		
+		    .cancel {
+		        .btn-small();
+		        .btn-danger();
+		    }
+		    
+			.fileinput-button {
+				margin-top: 4px;
+			}
+		}
+		
+	    .ui-widget-header {
+	    	background: @white;
+	    }
+
+		.ui-icon-plusthick {
+		    .envicon-med-paper();
+		    margin-top: -12px !important;
+		    height: 24px;
+		    width: 24px;
+		}
+		
+		.ui-icon-arrowreturnthick-1-n {
+		    .envicon-med-cloud();
+		    margin-top: -12px !important;
+		    height: 24px;
+		    width: 24px;
+		}
+		
+		.ui-icon-cancel {
+		    .envicon-med-close();
+		    margin-top: -12px !important;
+		    height: 24px;
+		    width: 24px;
+		}
+	}
+}
+
+.ui-colorpicker-container {
+	input, select, textarea {
+	    color: #898989 !important;
+	    -webkit-text-fill-color: #898989 !important;
+	}
+	
+	input {
+		height: 15px !important;
+		width: 18px !important;
+		top: 0px !important;
+		background-color: transparent !important;
+		border: none !important;
+		font-size: 10px !important;
+		margin-bottom: 0px;
+	}
+	
+	.ui-colorpicker_hex input {
+		width: 35px !important;
+	}
+}
+
+#pgNotifications {
+    #notificationUser_panel {
+        width: 200px;
+    }	
+} // #pgNotifications
+
+#pgFileSubmission {
+    #uploadeFileContainer {
+	   .btn-toolbar {
+	        margin-bottom: 0px;    
+	    }
+    }
+    
+    #submissionDateOptions {
+        margin-bottom: 5px !important;    
+    }	
+} // #pgFileSubmission
+
+
+
+// End Page Specific Styles
+
+
+// -------------------------------------------------------------------------------------|
+// Legacy Browser Styles
+// -------------------------------------------------------------------------------------|
+
+// Provide a border when box-shadow not supported and no border is set
+.no-boxshadow
+{
+	#contentContainer,
+    .sectionContainer,
+    #footerCopyrightContainer,
+    #homeMenuContainer .homeMenuBody {
+        border: 1px solid #dbdbdb;
+    }
+}
+
+// End Legacy Browser Styles

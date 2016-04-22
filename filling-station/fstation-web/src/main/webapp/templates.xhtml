@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<f:view contentType="text/html" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fstation="http://fstation.com/jsf/fstation">
+
+	<f:verbatim>
+		<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+		<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+		<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+		<!--[if gt IE 8]><!-->
+	</f:verbatim>
+	<html class="no-js">
+<h:head>
+	<link rel="shortcut icon" href="favicon.ico" />	
+	<ui:include src="includes/includecssjs.xhtml" />	
+	
+</h:head>
+<h:body>
+<fstation:menu/>
+
+		<div id="bodyContainer">
+			<h:form id="templateForm">
+				<div id="contentContainer">
+					<div class="container">
+						<div class="span20 sectionCenter">
+							<div class="btn-toolbar">								
+
+								<p:commandButton
+									value="Add"
+									id="btnShowAncestorsTemplate"
+									styleClass="btn btn-primary"  />
+
+								<p:commandButton
+									value="Delete"
+									id="btnHideAncestorsTemplate"
+									styleClass="btn btn-danger" update="@form" />
+							</div>
+							
+							<div class="row">								
+
+								<p:commandButton
+									value="Add"
+									id="btnShowAncestorsTemplate1"
+									styleClass="btn btn-primary"  />
+
+								<p:commandButton
+									value="Delete"
+									id="btnHideAncestorsTemplate1"
+									styleClass="btn btn-danger" update="@form" />
+							</div>
+
+							
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	
+</h:body>
+</html>
+</f:view>
